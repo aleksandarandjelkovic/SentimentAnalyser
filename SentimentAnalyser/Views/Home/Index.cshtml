@@ -1,0 +1,111 @@
+﻿@model LexiconVM
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/css/lexicon.css" />
+    <script src="~/js/lexicon.js"></script>
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Welcome to Sentiment Analyser</h1>
+    </div>
+    <div class="m-4">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="nav-item">
+                <a href="#lexicon" class='nav-link @(!Model.Calculated ? "active" : "")' data-bs-toggle="tab">Lexicon</a>
+            </li>
+            <li class="nav-item">
+                <a href="#upload" class='nav-link @(Model.Calculated ? "active" : "")' data-bs-toggle="tab">Calculation</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class='tab-pane fade show @(!Model.Calculated ? "active" : "")' id="lexicon">
+                <p id="errorMessage" class="p-2" style="display: none"></p>
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h2>Lexicon <b>Details</b></h2>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(x => x.SelectedFilterId, Model.FiltersList, new { @class = "form-control", @Id = "ddlFilters" })
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered" id="wordsTable">
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Sentiment Rating</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="display: none">
+                                <td id="wordDesc"></td>
+                                <td id="wordSentimentScore"></td>
+                                <td>
+                                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                </td>
+                            </tr>
+                            @foreach (var word in Model.Words)
+                            {
+                                <tr>
+                                    <td id="wordDesc" data-attribute="@word.WordId">@word.WordDesc</td>
+                                    <td id="wordSentimentScore">@word.SentimentScore</td>
+                                    <td>
+                                        <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class='tab-pane fade @(Model.Calculated ? "active show" : "")' id="upload">
+                <p class="result ml-0 pl-0">Score: @Model.Score</p>
+                @if (!String.IsNullOrEmpty(Model.FileValidationMessage))
+                {
+                    <p class="fileUploadMessage" >@Model.FileValidationMessage</p>
+                }
+                <div class="inputForm">
+                    @using (@Html.BeginForm("Calculate", "Home"))
+                    {
+                        @Html.TextArea("text", new { @class = "form-control", @rows = 10 })
+                        <input class="btn btn-primary my-2" value="Calculate" type="submit" />
+                    }
+                </div>
+                <div class="uploadForm mt-4">
+                    <form class="test" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Upload">
+                        <div class="form-group">
+                            <div class="col-md-10 p-0">
+                                <p>Upload file that you want to analyse</p>
+                                <input class="btn btn-warning my-2" type="file" name="files" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10 p-0">
+                                <input class="btn btn-primary my-2" type="submit" value="Upload and Calculate" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

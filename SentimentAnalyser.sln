@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SentimentAnalyserAPI", "SentimentAnalyserAPI\SentimentAnalyserAPI.csproj", "{3428D02F-6811-4662-AF25-8B0BBB60A8F4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SentimentAnalyser", "SentimentAnalyser\SentimentAnalyser.csproj", "{CF569F77-F47E-4E72-8ACF-21C4A5299AF1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3662FE4-88E1-42EF-B856-9E892363F3F8}"
+	ProjectSection(SolutionItems) = preProject
+		InitialScript.sql = InitialScript.sql
+		README.txt = README.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3428D02F-6811-4662-AF25-8B0BBB60A8F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3428D02F-6811-4662-AF25-8B0BBB60A8F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3428D02F-6811-4662-AF25-8B0BBB60A8F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3428D02F-6811-4662-AF25-8B0BBB60A8F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF569F77-F47E-4E72-8ACF-21C4A5299AF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF569F77-F47E-4E72-8ACF-21C4A5299AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF569F77-F47E-4E72-8ACF-21C4A5299AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF569F77-F47E-4E72-8ACF-21C4A5299AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1DF19251-01F3-4543-AC3C-66CAF5DFE1AD}
+	EndGlobalSection
+EndGlobal
